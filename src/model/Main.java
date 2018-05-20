@@ -1,22 +1,36 @@
+package model;
 import java.util.ArrayList;
 import java.util.Date;
+
+import basic_gui.BasicInterface;
 
 @SuppressWarnings("deprecation")
 public class Main {
 
+	// Enables/disables debugging messages
 	private static Boolean debugMode = false;
+	
+	// Enables/disables fancy JFrame window for viewing the lineages
 	private static Boolean interfaceMode = true;
+	
+	// Pointer to GUI
 	private static BasicInterface basicInterface;
+	
+	// Enables/disables full lineage viewing
+	private static Boolean fullLineage = false;
 
 	/*
-	 * Explanations: Recursive: Technique for scanning generic tree [size,
-	 * depth, any shape] DP: Direct Primogeniture DMP: Direct Male Primogeniture
-	 * LoD: Line of Descent
+	 * Concepts and acronyms: 
+	 * 	Recursive: Technique for scanning generic tree [size,
+	 * 				depth, any shape]
+	 * 	DP: Direct Primogeniture
+	 * 	DMP: Direct Male Primogeniture
+	 * 	LoD: Line of Descent
 	 */
 
 	public static void main(String[] args) throws Exception {
-		// tudors();
-		// currentRoyalFamily();
+		//tudors();
+		//currentRoyalFamily();
 		targaryens();
 
 	}
@@ -50,9 +64,13 @@ public class Main {
 		tudors.add(henryVIII);
 
 		for (Royal r : tudors) {
-			for (Royal c : r.getChildren()) {
-				c.setRoyalParent(r);
+			r.sortChildrenMaleFirstDob();
+			if (fullLineage) {
+				r.setAlive(true);
 			}
+			/*
+			 * for (Royal c : r.getChildren()) { c.setRoyalParent(r); }
+			 */
 		}
 
 		getRecursiveLoDDMP(henryVIII);
@@ -163,10 +181,13 @@ public class Main {
 		windsor.add(Harry);
 		windsor.add(William);
 
-		for (Royal r : windsor) {
-			for (Royal c : r.getChildren()) {
-				c.setRoyalParent(r);
+		if (fullLineage) {
+			for (Royal r : windsor) {
+				r.setAlive(true);
 			}
+/*			for (Royal c : r.getChildren()) {
+				c.setRoyalParent(r);
+			}*/
 		}
 
 		getRecursiveLoDDP(ElizabethRegnum);
@@ -213,10 +234,10 @@ public class Main {
 
 		ArrayList<Royal> rhaellasChildren = new ArrayList<Royal>(); //
 		rhaellasChildren.addAll(aerysChildren);
-		
+
 		Targaryen rhaella = new Targaryen(
 				"Rhaella Targaryen (daughter of Jaehaerys II)", new Date(245),
-				Gender.FEMALE, rhaellasChildren );
+				Gender.FEMALE, rhaellasChildren);
 
 		ArrayList<Royal> jaehaerysIIChildren = new ArrayList<Royal>();
 		jaehaerysIIChildren.add(aerysII);
@@ -227,9 +248,9 @@ public class Main {
 
 		ArrayList<Royal> shaerasChildren = new ArrayList<Royal>(); //
 		shaerasChildren.addAll(jaehaerysIIChildren);
-		
+
 		Targaryen shaera = new Targaryen("Shaera Targaryen", new Date(226),
-				Gender.FEMALE, shaerasChildren );
+				Gender.FEMALE, shaerasChildren);
 
 		Targaryen duncan = new Targaryen(
 				"Duncan 'Prince of Dragonflies' Targaryen", new Date(222),
@@ -349,7 +370,7 @@ public class Main {
 		ArrayList<Royal> daenorasChildren = new ArrayList<Royal>(); //
 		daenorasChildren.addAll(aerionsChildren);
 		Targaryen daenora = new Targaryen("Daenora Targaryen", new Date(213),
-				Gender.FEMALE, daenorasChildren );
+				Gender.FEMALE, daenorasChildren);
 
 		ArrayList<Royal> rhaegelsChildren = new ArrayList<Royal>();
 		rhaegelsChildren.add(aelora);
@@ -382,9 +403,9 @@ public class Main {
 		ArrayList<Royal> naerysChildren = new ArrayList<Royal>(); //
 		naerysChildren.add(daeronII);
 		naerysChildren.add(daenerys);
-		
+
 		Targaryen naerys = new Targaryen("Naerys Targaryen", new Date(138),
-				Gender.FEMALE, naerysChildren );
+				Gender.FEMALE, naerysChildren);
 
 		Targaryen aemon136 = new Targaryen("Aemon 'Dragonknight' Targaryen",
 				new Date(136), Gender.MALE, new ArrayList<Royal>());
@@ -517,9 +538,9 @@ public class Main {
 		ArrayList<Royal> daemonsChildren = new ArrayList<Royal>();
 		daemonsChildren.add(aegonIII); //
 		daemonsChildren.add(viserysII); //
-		
+
 		Targaryen daemon = new Targaryen("Daemon 'the Rogue Prince' Targaryen",
-				new Date(81), Gender.MALE, daemonsChildren );
+				new Date(81), Gender.MALE, daemonsChildren);
 
 		ArrayList<Royal> baelonsChildren = new ArrayList<Royal>();
 		baelonsChildren.add(viserysI);
@@ -531,9 +552,9 @@ public class Main {
 
 		ArrayList<Royal> alyssasChildren = new ArrayList<Royal>(); //
 		alyssasChildren.addAll(baelonsChildren);
-		
+
 		Targaryen alyssa = new Targaryen("Alyssa Targaryen", new Date(52),
-				Gender.FEMALE, alyssasChildren );
+				Gender.FEMALE, alyssasChildren);
 
 		Targaryen rhaena = new Targaryen(
 				"Rhaena 'of Pentos' Targaryen (daughter of Laena Velaryon)",
@@ -554,9 +575,9 @@ public class Main {
 		laenorsChildren.add(jacaerys);
 		laenorsChildren.add(lucerys);
 		laenorsChildren.add(joffreyVelaryon);
-		
+
 		Targaryen laenor = new Targaryen("Laenor Velaryon", new Date(94),
-				Gender.MALE, laenorsChildren );
+				Gender.MALE, laenorsChildren);
 
 		ArrayList<Royal> rhaenys74sChildren = new ArrayList<Royal>();
 		rhaenys74sChildren.add(laena);
@@ -574,9 +595,9 @@ public class Main {
 
 		ArrayList<Royal> aemmasChildren = new ArrayList<Royal>(); //
 		aemmasChildren.add(rhaenyra);
-		
+
 		Targaryen aemma = new Targaryen("Aemma Arryn", new Date(82),
-				Gender.FEMALE, aemmasChildren );
+				Gender.FEMALE, aemmasChildren);
 
 		ArrayList<Royal> daellasChildren = new ArrayList<Royal>();
 		daellasChildren.add(aemma);
@@ -623,13 +644,13 @@ public class Main {
 
 		Targaryen aegon26 = new Targaryen("Aegon Targaryen (son of Aenys I)",
 				new Date(26), Gender.MALE, aegon26sChildren);
-		
+
 		ArrayList<Royal> rhaena23sChildren = new ArrayList<Royal>(); //
 		rhaena23sChildren.addAll(aegon26sChildren);
-		
+
 		Targaryen rhaena23 = new Targaryen(
 				"Rhaena Targaryen (daughter of Aenys I)", new Date(23),
-				Gender.FEMALE, rhaena23sChildren );
+				Gender.FEMALE, rhaena23sChildren);
 
 		Targaryen viserys29 = new Targaryen(
 				"Viserys Targaryen (son of Aenys I)", new Date(29),
@@ -679,11 +700,10 @@ public class Main {
 		Targaryen daddyAerion = new Targaryen(
 				"Aerion Targaryen (father of Aegon I)", new Date(-52),
 				Gender.MALE, daddyAerionsChildren);
-		
-		 rhaenys.setRoyalParent(daddyAerion);
-		 visenya.setRoyalParent(daddyAerion);
-		 aegonTheConqueror.setRoyalParent(daddyAerion);
-		 
+
+		rhaenys.setRoyalParent(daddyAerion);
+		visenya.setRoyalParent(daddyAerion);
+		aegonTheConqueror.setRoyalParent(daddyAerion);
 
 		targaryens.add(daddyAerion);
 		targaryens.add(visenya);
@@ -782,11 +802,14 @@ public class Main {
 		targaryens.add(rhaego);
 
 		for (Royal r : targaryens) {
+			
 			r.sortChildrenMaleFirstDob();
-			//r.setAlive(true);
-/*			for (Royal c : r.getChildren()) {
-				c.setRoyalParent(r);
-			}*/
+			if (fullLineage){
+				r.setAlive(true);
+			}
+			/*
+			 * for (Royal c : r.getChildren()) { c.setRoyalParent(r); }
+			 */
 		}
 
 		joffreyBaratheon.setAlive(true);
@@ -1034,29 +1057,27 @@ public class Main {
 
 	public static ArrayList<Royal> findHeirRecursiveDMP(Royal root) {
 
-		Targaryen root1 = (Targaryen) root;
+		if (root instanceof Targaryen) {
+			root = (Targaryen) root;
+		}
 
 		// root.sortChildrenMaleFirstDob();
 
 		if (debugMode)
-			System.out.println("[DEBUG] Root: " + root1.getName());
+			System.out.println("[DEBUG] Root: " + root.getName());
 
 		ArrayList<Royal> result = new ArrayList<Royal>();
 		ArrayList<Royal> heirs = root.getChildren();
 
-		result.add(root1);
-		root1.setVisited(true);
+		result.add(root);
+		root.setVisited(true);
 
 		for (int j = 0; j < heirs.size(); j++) {
 			if (heirs.get(j).getRoyalParent() == null) {
-				heirs.get(j).setRoyalParent(root1);
+				heirs.get(j).setRoyalParent(root);
 			}
 			if (!heirs.get(j).getVisited()) {
 				// heirs.get(j).setVisited(true);
-
-/*				if (heirs.get(j).getRoyalParent() == null) {
-					heirs.get(j).setRoyalParent(root1);
-				}*/
 
 				ArrayList<Royal> children = findHeirRecursiveDMP(heirs.get(j));
 
@@ -1070,7 +1091,7 @@ public class Main {
 			}
 		}
 
-		ArrayList<Royal> kin = root1.getKin();
+		ArrayList<Royal> kin = root.getKin();
 
 		for (int j = 0; j < kin.size(); j++) {
 			if (!kin.get(j).getVisited()) {
@@ -1085,7 +1106,7 @@ public class Main {
 			}
 		}
 
-		Royal parent = root1.getRoyalParent();
+		Royal parent = root.getRoyalParent();
 
 		if (parent != null) {
 
@@ -1102,9 +1123,10 @@ public class Main {
 							.get(j));
 					for (int k = 0; k < unclesChildren.size(); k++) {
 						Royal child = unclesChildren.get(k);
-/*						if (child.getRoyalParent() == null){
-							child.setRoyalParent(uncles.get(j));
-						}*/
+						/*
+						 * if (child.getRoyalParent() == null){
+						 * child.setRoyalParent(uncles.get(j)); }
+						 */
 						if (!result.contains(child) && child.canBeHeir()) {
 							result.add(child);
 						}
@@ -1143,8 +1165,9 @@ public class Main {
 			for (int i = 1; i < lineage.size(); i++) {
 				Royal aux = lineage.get(i);
 				message += i + ". " + aux.getName() + "\n";
-				if (aux.getRoyalParent() != null && debugMode){
-					message += "Parent: "+aux.getRoyalParent().getName()+"\n";
+				if (aux.getRoyalParent() != null && debugMode) {
+					message += "Parent: " + aux.getRoyalParent().getName()
+							+ "\n";
 				}
 			}
 			System.out.println(title);
@@ -1153,16 +1176,18 @@ public class Main {
 			for (int i = 1; i <= 12; i++) {
 				Royal aux = lineage.get(i);
 				message += i + ". " + aux.getName() + "\n";
-				if (aux.getRoyalParent() != null && debugMode){
-					message += "Parent: "+aux.getRoyalParent().getName()+"\n";
+				if (aux.getRoyalParent() != null && debugMode) {
+					message += "Parent: " + aux.getRoyalParent().getName()
+							+ "\n";
 				}
 			}
 			message += "\n";
 			for (int i = 13; i < lineage.size(); i++) {
 				Royal aux = lineage.get(i);
 				messageAux += i + ". " + aux.getName() + "\n";
-				if (aux.getRoyalParent() != null && debugMode){
-					messageAux += "Parent: "+aux.getRoyalParent().getName()+"\n";
+				if (aux.getRoyalParent() != null && debugMode) {
+					messageAux += "Parent: " + aux.getRoyalParent().getName()
+							+ "\n";
 				}
 				if (i % 12 == 0 && !interfaceMode) {
 					messageAux += "\n";
@@ -1206,8 +1231,9 @@ public class Main {
 			for (int i = 1; i < lineage.size(); i++) {
 				Royal aux = lineage.get(i);
 				message += i + ". " + aux.getName() + "\n";
-				if (aux.getRoyalParent() != null && debugMode){
-					message += "Parent: "+aux.getRoyalParent().getName()+"\n";
+				if (aux.getRoyalParent() != null && debugMode) {
+					message += "Parent: " + aux.getRoyalParent().getName()
+							+ "\n";
 				}
 			}
 			System.out.println(title);
@@ -1216,16 +1242,18 @@ public class Main {
 			for (int i = 1; i <= 12; i++) {
 				Royal aux = lineage.get(i);
 				message += i + ". " + aux.getName() + "\n";
-				if (aux.getRoyalParent() != null && debugMode){
-					message += "Parent: "+aux.getRoyalParent().getName()+"\n";
+				if (aux.getRoyalParent() != null && debugMode) {
+					message += "Parent: " + aux.getRoyalParent().getName()
+							+ "\n";
 				}
 			}
 			message += "\n";
 			for (int i = 13; i < lineage.size(); i++) {
 				Royal aux = lineage.get(i);
 				messageAux += i + ". " + aux.getName() + "\n";
-				if (aux.getRoyalParent() != null && debugMode){
-					messageAux += "Parent: "+aux.getRoyalParent().getName()+"\n";
+				if (aux.getRoyalParent() != null && debugMode) {
+					messageAux += "Parent: " + aux.getRoyalParent().getName()
+							+ "\n";
 				}
 				if (i % 12 == 0 && !interfaceMode) {
 					messageAux += "\n";

@@ -1,3 +1,4 @@
+package basic_gui;
 
 
 import java.awt.Graphics;
@@ -18,7 +19,7 @@ public class ImagePanel extends JPanel{
     public ImagePanel() {
        try {                
     	   image = ImageIO.read(getClass().getResource(
-   				"/Iron_throne.png"));
+   				"../images/Iron_throne.png"));
        } catch (IOException ex) {
             // handle exception...
        }

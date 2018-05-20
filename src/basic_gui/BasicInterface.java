@@ -1,3 +1,4 @@
+package basic_gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -26,7 +27,7 @@ public class BasicInterface extends JFrame {
 	public BasicInterface() throws IOException {
 
 		this.setIconImage(ImageIO.read(getClass().getResource(
-   				"/Aegons_crown.png")));
+   				"../images/Aegons_crown.png")));
 		
 		//setTitle("Royal Lineage");
 		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,7 +35,8 @@ public class BasicInterface extends JFrame {
 
 		setSize(1000, 500);
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		contentPane = new ImagePanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
