@@ -8,7 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -49,11 +51,17 @@ public class DynastySelector extends JFrame {
 	 * Create the frame.
 	 */
 	public DynastySelector() {
+		try {
+			this.setIconImage(ImageIO.read(getClass().getResource(
+					"../images/Aegons_crown.png")));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		
 		setTitle("Select a dynasty");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
+		contentPane = new ImagePanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
