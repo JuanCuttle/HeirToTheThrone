@@ -31,7 +31,7 @@ public class BasicInterface extends JFrame {
 		
 		//setTitle("Royal Lineage");
 		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// setBounds(100, 100, 450, 300);
+		setBounds(500, 100, 1000, 500);
 
 		setSize(1000, 500);
 		setResizable(false);

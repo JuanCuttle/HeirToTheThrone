@@ -8,16 +8,16 @@ import basic_gui.BasicInterface;
 public class Main {
 
 	// Enables/disables debugging messages
-	private static Boolean debugMode = false;
+	public static Boolean debugMode = false;
 	
 	// Enables/disables fancy JFrame window for viewing the lineages
-	private static Boolean interfaceMode = true;
+	public static Boolean interfaceMode = false;
 	
 	// Pointer to GUI
-	private static BasicInterface basicInterface;
+	public static BasicInterface basicInterface;
 	
 	// Enables/disables full lineage viewing
-	private static Boolean fullLineage = false;
+	public static Boolean fullLineage = false;
 
 	/*
 	 * Concepts and acronyms: 
@@ -73,11 +73,11 @@ public class Main {
 			 */
 		}
 
-		getRecursiveLoDDMP(henryVIII);
+		//getRecursiveLoDDMP(henryVIII);
 
 	}
 
-	public static void currentRoyalFamily() throws Exception {
+	public static ArrayList<Royal> currentRoyalFamily() throws Exception {
 
 		ArrayList<Royal> windsor = new ArrayList<Royal>();
 
@@ -177,6 +177,7 @@ public class Main {
 		windsor.add(Charles);
 		windsor.add(George);
 		windsor.add(Charlotte);
+		windsor.add(Louis);
 		windsor.add(Zara);
 		windsor.add(Harry);
 		windsor.add(William);
@@ -190,10 +191,12 @@ public class Main {
 			}*/
 		}
 
-		getRecursiveLoDDP(ElizabethRegnum);
+		//getRecursiveLoDDP(ElizabethRegnum);
+		
+		return windsor;
 	}
 
-	public static void targaryens() throws Exception {
+	public static ArrayList<Royal> targaryens() throws Exception {
 		ArrayList<Royal> targaryens = new ArrayList<Royal>();
 
 		Targaryen rhaego = new Targaryen("Rhaego Targaryen", new Date(298),
@@ -824,7 +827,10 @@ public class Main {
 		benPlumm.setAlive(true);
 
 		// System.out.println(aerysII.getKin());
-		getRecursiveLoDDMP(aegonTheConqueror);
+		
+		//getRecursiveLoDDMP(aegonTheConqueror);
+		
+		return targaryens;
 
 	}
 
