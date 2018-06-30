@@ -2,9 +2,9 @@ package basic_gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
@@ -21,13 +21,14 @@ public class BasicInterface extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * 
-	 * @throws IOException
 	 */
 	public BasicInterface() throws IOException {
 
-		this.setIconImage(ImageIO.read(getClass().getResource(
-   				"../images/Aegons_crown.png")));
+		/*this.setIconImage(ImageIO.read(getClass().getResource(
+   				"../images/Aegons_crown.png")));*/
+		
+		this.setIconImage(Toolkit.getDefaultToolkit().getImage(
+				ImagePanel.class.getResource("/images/Aegons_crown.png")));
 		
 		//setTitle("Royal Lineage");
 		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

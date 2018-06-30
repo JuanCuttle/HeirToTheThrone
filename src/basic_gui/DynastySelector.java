@@ -4,22 +4,20 @@ import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import model.Dynasties;
 import model.Main;
-
-import javax.swing.JCheckBox;
 
 public class DynastySelector extends JFrame {
 
@@ -51,12 +49,12 @@ public class DynastySelector extends JFrame {
 	 * Create the frame.
 	 */
 	public DynastySelector() {
-		try {
-			this.setIconImage(ImageIO.read(getClass().getResource(
-					"../images/Aegons_crown.png")));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+
+			/*this.setIconImage(ImageIO.read(getClass().getResource(
+					"../images/Aegons_crown.png")));*/
+			this.setIconImage(Toolkit.getDefaultToolkit().getImage(
+				DynastySelector.class.getResource("/images/Aegons_crown.png")));
+
 		
 		setTitle("Select a dynasty");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

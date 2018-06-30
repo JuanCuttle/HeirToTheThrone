@@ -2,10 +2,9 @@ package basic_gui;
 
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
+import java.awt.Image;
+import java.awt.Toolkit;
 
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class ImagePanel extends JPanel{
@@ -14,15 +13,16 @@ public class ImagePanel extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private BufferedImage image;
+	private Image image;
 
     public ImagePanel() {
-       try {                
-    	   image = ImageIO.read(getClass().getResource(
-   				"../images/Iron_throne.png"));
-       } catch (IOException ex) {
-            // handle exception...
-       }
+
+		/*image = ImageIO.read(getClass().getResource(
+				"../images/Iron_throne.png"));*/
+		image = Toolkit.getDefaultToolkit().getImage(
+				ImagePanel.class.getResource("/images/Iron_throne.png"));
+		
+	   
     }
 
     @Override

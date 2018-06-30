@@ -1,12 +1,12 @@
 package basic_gui;
 
 import java.awt.BorderLayout;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,8 +15,6 @@ import javax.swing.border.EmptyBorder;
 import model.Dynasties;
 import model.Main;
 import model.Royal;
-
-import javax.swing.JButton;
 
 public class LineageSelector extends JFrame {
 
@@ -32,12 +30,12 @@ public class LineageSelector extends JFrame {
 	 */
 	public LineageSelector(Dynasties dynasty) {
 		
-		try {
-			this.setIconImage(ImageIO.read(getClass().getResource(
-					"../images/Aegons_crown.png")));
-		} catch (IOException e3) {
-			e3.printStackTrace();
-		}
+
+			/*this.setIconImage(ImageIO.read(getClass().getResource(
+					"../images/Aegons_crown.png")));*/
+			this.setIconImage(Toolkit.getDefaultToolkit().getImage(
+					LineageSelector.class.getResource("/images/Aegons_crown.png")));
+
 		
 		this.setVisible(true);
 		
