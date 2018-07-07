@@ -108,12 +108,32 @@ public class Main {
 
 		Royal Charles = new Royal("Charles Philip Arthur George", new Date(
 				1948, 11, 14), Gender.MALE, true, charlesChildren);
+		
+		Royal Savannah = new Royal("Savannah Anne Kathleen", new Date(2010,
+				12, 29), Gender.FEMALE, true, new ArrayList<Royal>());
+		
+		Royal Isla = new Royal("Isla Elizabeth", new Date(2012,
+				3, 29), Gender.FEMALE, true, new ArrayList<Royal>());
+		
+		ArrayList<Royal> petersChildren = new ArrayList<Royal>();
+		petersChildren.add(Savannah);
+		petersChildren.add(Isla);
 
 		Royal Peter = new Royal("Peter Mark Andrew Phillips", new Date(1977,
-				11, 15), Gender.MALE, true, new ArrayList<Royal>());
+				11, 15), Gender.MALE, true, petersChildren);
+		
+		Royal Mia = new Royal("Mia Grace Tindall", new Date(2014,
+				1, 17), Gender.FEMALE, true, new ArrayList<Royal>());
+
+		Royal Lena = new Royal("Lena Elizabeth Tindall ", new Date(2018,
+				6, 18), Gender.FEMALE, true, new ArrayList<Royal>());
+		
+		ArrayList<Royal> zarasChildren = new ArrayList<Royal>();
+		zarasChildren.add(Mia);
+		zarasChildren.add(Lena);
 
 		Royal Zara = new Royal("Zara Anne Elizabeth Phillips", new Date(1981,
-				5, 15), Gender.FEMALE, true, new ArrayList<Royal>());
+				5, 15), Gender.FEMALE, true, zarasChildren);
 
 		ArrayList<Royal> annesChildren = new ArrayList<Royal>();
 		annesChildren.add(Peter);
@@ -161,10 +181,56 @@ public class Main {
 		Royal ElizabethRegnum = new Royal("Elizabeth Alexandra Mary", new Date(
 				1926, 4, 21), Gender.FEMALE, true, queensChildren);
 
-		/*
-		 * String heir = showHeir(ElizabethRegnum); System.out.println(heir);
-		 */
+		
+		Royal Charles1999 = new Royal("Charles Patrick Inigo Armstrong-Jones", new Date(
+				1999, 7, 1), Gender.MALE, true, new ArrayList<Royal>());
+		
+		Royal Margarita = new Royal("Margarita Elizabeth Rose Alleyne Armstrong-Jones", new Date(
+				2002, 5, 14), Gender.FEMALE, true, new ArrayList<Royal>());
+		
+		ArrayList<Royal> davidsChildren = new ArrayList<Royal>();
+		davidsChildren.add(Charles1999);
+		davidsChildren.add(Margarita);
 
+		Royal David = new Royal("David Albert Charles Armstrong-Jones", new Date(
+				1961, 11, 3), Gender.MALE, true, davidsChildren);
+		
+		Royal Samuel = new Royal("Samuel David Benedict Chatto", new Date(
+				1996, 7, 28), Gender.MALE, true, new ArrayList<Royal>());
+		
+		Royal Arthur = new Royal("Arthur Robert Nathaniel Chatto", new Date(
+				1999, 2, 5), Gender.MALE, true, new ArrayList<Royal>());
+		
+		ArrayList<Royal> sarahsChildren = new ArrayList<Royal>();
+		sarahsChildren.add(Samuel);
+		sarahsChildren.add(Arthur);
+		
+		Royal Sarah = new Royal("Sarah Frances Elizabeth Chatto", new Date(
+				1964, 5, 1), Gender.FEMALE, true, sarahsChildren);
+		
+		ArrayList<Royal> margaretsChildren = new ArrayList<Royal>();
+		margaretsChildren.add(David);
+		margaretsChildren.add(Sarah);
+		
+		Royal Margaret = new Royal("Margaret Rose", new Date(
+				1930, 8, 21), Gender.FEMALE, true, margaretsChildren);
+		
+		ArrayList<Royal> georgeVIschildren = new ArrayList<Royal>();
+		georgeVIschildren.add(ElizabethRegnum);
+		georgeVIschildren.add(Margaret);
+		
+		Royal GeorgeVI = new Royal("Albert Frederick Arthur George", new Date(
+				1895, 12, 14), Gender.MALE, true, georgeVIschildren);
+
+		
+		windsor.add(GeorgeVI);
+		windsor.add(Margaret);
+		windsor.add(David);
+		windsor.add(Charles1999);
+		windsor.add(Margarita);
+		windsor.add(Sarah);
+		windsor.add(Samuel);
+		windsor.add(Arthur);
 		windsor.add(ElizabethRegnum);
 		windsor.add(Edward);
 		windsor.add(James);
@@ -185,10 +251,10 @@ public class Main {
 		if (fullLineage) {
 			for (Royal r : windsor) {
 				r.setAlive(true);
+				for (Royal c : r.getChildren()) {
+					c.setRoyalParent(r);
+				}
 			}
-/*			for (Royal c : r.getChildren()) {
-				c.setRoyalParent(r);
-			}*/
 		}
 
 		//getRecursiveLoDDP(ElizabethRegnum);
@@ -809,10 +875,10 @@ public class Main {
 			r.sortChildrenMaleFirstDob();
 			if (fullLineage){
 				r.setAlive(true);
+				for (Royal c : r.getChildren()) { 
+					c.setRoyalParent(r);
+				}
 			}
-			/*
-			 * for (Royal c : r.getChildren()) { c.setRoyalParent(r); }
-			 */
 		}
 
 		joffreyBaratheon.setAlive(true);
