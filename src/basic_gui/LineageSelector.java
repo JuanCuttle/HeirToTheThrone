@@ -76,10 +76,10 @@ public class LineageSelector extends JFrame {
 				}
 				try {
 					switch(dynasty){
-					case TARGARYEN: Main.getRecursiveLoDDMP((Royal)comboBox.getSelectedItem());;
-								break;
-					default: Main.getRecursiveLoDDP((Royal)comboBox.getSelectedItem());;
-						break;
+						case TARGARYEN: Main.getRecursiveLoDDMP((Royal)comboBox.getSelectedItem());;
+									break;
+						default: Main.getRecursiveLoDDP((Royal)comboBox.getSelectedItem());;
+							break;
 				}
 					
 				} catch (Exception e2) {

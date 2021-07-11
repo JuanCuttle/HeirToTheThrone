@@ -112,7 +112,7 @@ public class Main {
 		Royal Harry = new Royal("Henry Charles Albert David", new Date(1984, 9,
 				15), Gender.MALE, true, harrysChildren);
 		
-		Harry.setInvalid(true); // Left  the Royal Family and subsequent Royal heir rights
+		Harry.setInvalid(true); // Left the Royal Family and subsequent Royal heir rights
 
 		ArrayList<Royal> charlesChildren = new ArrayList<Royal>();
 		charlesChildren.add(William);
