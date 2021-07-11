@@ -60,7 +60,9 @@ public class LineageSelector extends JFrame {
 		
 		JComboBox<Royal> comboBox = new JComboBox<>();
 		for (Royal t : options){
-			comboBox.addItem(t);
+			if (!t.isInvalid()) {
+				comboBox.addItem(t);
+			}
 		}
 		
 		contentPane.add(comboBox, BorderLayout.CENTER);

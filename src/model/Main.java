@@ -99,8 +99,20 @@ public class Main {
 		Royal William = new Royal("William Arthur Philip Louis", new Date(1982,
 				6, 21), Gender.MALE, true, williamsChildren);
 
+		Royal Archie = new Royal("Archie Harrison Mountbatten-Windsor", new Date(2019, 5,
+				6), Gender.MALE, true, new ArrayList<Royal>());
+		
+		Royal Lilibet = new Royal("Lilibet Diana Mountbatten-Windsor", new Date(2021, 6,
+				4), Gender.FEMALE, true, new ArrayList<Royal>());
+		
+		ArrayList<Royal> harrysChildren = new ArrayList<Royal>();
+		harrysChildren.add(Archie);
+		harrysChildren.add(Lilibet);
+		
 		Royal Harry = new Royal("Henry Charles Albert David", new Date(1984, 9,
-				15), Gender.MALE, true, new ArrayList<Royal>());
+				15), Gender.MALE, true, harrysChildren);
+		
+		Harry.setInvalid(true); // Left  the Royal Family and subsequent Royal heir rights
 
 		ArrayList<Royal> charlesChildren = new ArrayList<Royal>();
 		charlesChildren.add(William);
@@ -246,6 +258,7 @@ public class Main {
 		windsor.add(Louis);
 		windsor.add(Zara);
 		windsor.add(Harry);
+		windsor.add(Archie);
 		windsor.add(William);
 
 		if (fullLineage) {

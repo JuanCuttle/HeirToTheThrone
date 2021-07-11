@@ -14,6 +14,7 @@ public class Royal implements Comparable<Royal> {
 	protected Royal royalParent;
 	protected Boolean alive = true;
 	private Boolean visited = false;
+	private Boolean isInvalid; // Has left or been disinherited from the Royal Family
 
 	public Royal(String name, Date dob, Gender gender, Boolean protestant,
 			ArrayList<Royal> children) {
@@ -21,6 +22,7 @@ public class Royal implements Comparable<Royal> {
 		this.dob = dob;
 		this.gender = gender;
 		this.protestant = protestant;
+		this.isInvalid = false;
 
 		Collections.sort(children);
 		this.setChildren(children);
@@ -129,7 +131,8 @@ public class Royal implements Comparable<Royal> {
 	}
 
 	public Boolean canBeHeir() {
-		return this.isProtestant() && this.isAlive();
+		return this.isProtestant() && this.isAlive()
+				&& !this.isInvalid;
 	}
 
 	public ArrayList<Royal> getMaleChildren() {
@@ -189,6 +192,17 @@ public class Royal implements Comparable<Royal> {
 
 	public void setVisited(Boolean visited) {
 		this.visited = visited;
+	}
+
+	public void setInvalid(boolean b) {
+		this.isInvalid = b;
+		for (Royal r : this.children) {
+			r.setInvalid(b);
+		}
+	}
+
+	public boolean isInvalid() {
+		return this.isInvalid;
 	}
 
 }
