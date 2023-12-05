@@ -7,7 +7,10 @@ import java.util.ArrayList;
 public class Targaryen extends Royal {
 
 	private Boolean abdicated = false;
-	
+
+	private Boolean hasAbdicated() {
+		return this.abdicated;
+	}
 
 	public void setAbdicated(Boolean abdicated) {
 		this.abdicated = abdicated;
@@ -17,20 +20,12 @@ public class Targaryen extends Royal {
 					 ArrayList<Royal> children) {
 
 		super(name, dob, gender, null, children);
-		//Collections.sort(this.children);
 		this.sortChildrenMaleFirstDob();
 		this.alive = false;
 	}
 
 	@Override
 	public Boolean canBeHeir() {
-		return this.isAlive() && !abdicated();
+		return this.isAlive() && !hasAbdicated();
 	}
-
-	private Boolean abdicated() {
-		return this.abdicated;
-	}
-
-
-
 }

@@ -40,23 +40,15 @@ public class Royal implements Comparable<Royal> {
 
 	@Override
 	public int compareTo(Royal arg0) {
-		return this.dob.compareTo(arg0.getdob());
+		return this.dob.compareTo(arg0.getDoB());
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public GenderEnum getGender() {
 		return gender;
-	}
-
-	public void setGender(GenderEnum gender) {
-		this.gender = gender;
 	}
 
 	public List<Royal> getChildren() {
@@ -77,48 +69,16 @@ public class Royal implements Comparable<Royal> {
 		return this.alive;
 	}
 
-	public Boolean getAlive() {
-		return alive;
-	}
-
 	public void setAlive(Boolean alive) {
 		this.alive = alive;
 	}
 
-	public ArrayList<Royal> getFemaleHeirs() {
-		ArrayList<Royal> femaleChildren = new ArrayList<>();
-		for (Royal r : this.heirs) {
-			if (r.getGender() == GenderEnum.FEMALE) {
-				femaleChildren.add(r);
-			}
-		}
-		return femaleChildren;
-	}
-
-	public ArrayList<Royal> getMaleHeirs() {
-		ArrayList<Royal> maleChildren = new ArrayList<>();
-		for (Royal r : this.heirs) {
-			if (r.getGender() == GenderEnum.MALE) {
-				maleChildren.add(r);
-			}
-		}
-		return maleChildren;
-	}
-
-	public LocalDate getdob() {
+	public LocalDate getDoB() {
 		return dob;
-	}
-
-	public void setdob(LocalDate dob) {
-		this.dob = dob;
 	}
 
 	public Boolean isProtestant() {
 		return protestant;
-	}
-
-	public void setProtestant(Boolean protestant) {
-		this.protestant = protestant;
 	}
 
 	public Royal getRoyalParent() {
@@ -173,11 +133,10 @@ public class Royal implements Comparable<Royal> {
 		if (this.getRoyalParent() != null) {
 			ArrayList<Royal> youngerBrothers = this.getRoyalParent()
 					.getHeirsDMP();
-			int atual = youngerBrothers.indexOf(this);
-			for (int i = atual + 1; i < youngerBrothers.size(); i++) {
+			int successionIndex = youngerBrothers.indexOf(this);
+			for (int i = successionIndex + 1; i < youngerBrothers.size(); i++) {
 					kin.add(youngerBrothers.get(i));
 			}
-			//kin.addAll(youngerBrothers);
 		}
 		return kin;
 	}
