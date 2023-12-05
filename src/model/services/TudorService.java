@@ -1,4 +1,8 @@
-package model;
+package model.services;
+
+import model.enums.GenderEnum;
+import model.Main;
+import model.entities.Royal;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,16 +20,16 @@ public class TudorService {
         ArrayList<Royal> tudors = new ArrayList<>();
 
         Royal mary = new Royal("Mary I Tudor", LocalDate.of(1516, FEBRUARY, 18),
-                Gender.FEMALE, true, new ArrayList<>());
+                GenderEnum.FEMALE, true, new ArrayList<>());
         Royal elizabeth = new Royal("Elizabeth I Tudor", LocalDate.of(1533, SEPTEMBER, 7),
-                Gender.FEMALE, true, new ArrayList<>());
+                GenderEnum.FEMALE, true, new ArrayList<>());
         Royal edward = new Royal("Edward VI Tudor", LocalDate.of(1537, OCTOBER, 12),
-                Gender.MALE, true, new ArrayList<>());
+                GenderEnum.MALE, true, new ArrayList<>());
 
         List<Royal> henryChildren = Arrays.asList(mary, elizabeth, edward);
 
         Royal henryVIII = new Royal("Henry VIII Tudor", LocalDate.of(1491, JUNE, 28),
-                Gender.MALE, true, henryChildren);
+                GenderEnum.MALE, true, henryChildren);
 
         tudors.add(mary);
         tudors.add(elizabeth);

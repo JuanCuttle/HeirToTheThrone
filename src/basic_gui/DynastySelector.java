@@ -16,7 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import model.DynastiesEnum;
+import model.enums.DynastiesEnum;
 import model.Main;
 
 public class DynastySelector extends JFrame {

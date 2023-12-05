@@ -13,6 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import model.*;
+import model.entities.Royal;
+import model.enums.DynastiesEnum;
+import model.services.TargaryenService;
+import model.services.WindsorService;
 
 public class LineageSelector extends JFrame {
 

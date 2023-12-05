@@ -1,12 +1,12 @@
 package model;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import basic_gui.BasicInterface;
-
-import static java.time.Month.*;
+import model.entities.Royal;
+import model.entities.Targaryen;
+import model.enums.GenderEnum;
+import model.services.TargaryenService;
 
 public class Main {
 
@@ -484,7 +484,7 @@ public class Main {
 		String message = "";
 		if (heir != root && heir != null) {
 			message = "Heir to " + root.getName() + ": HRH Prince";
-			if (heir.getGender() == Gender.FEMALE) {
+			if (heir.getGender() == GenderEnum.FEMALE) {
 				message += "ss";
 			}
 			message += " " + heir.getName();
@@ -500,7 +500,7 @@ public class Main {
 		String message = "";
 		if (heir != root && heir != null) {
 			message = "Heir to " + root.getName() + ": HRH Prince";
-			if (heir.getGender() == Gender.FEMALE) {
+			if (heir.getGender() == GenderEnum.FEMALE) {
 				message += "ss";
 			}
 			message += " " + heir.getName();
