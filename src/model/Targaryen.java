@@ -1,4 +1,5 @@
 package model;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -11,8 +12,8 @@ public class Targaryen extends Royal {
 		this.abdicated = abdicated;
 	}
 
-	public Targaryen(String name, Date dob, Gender gender,
-			ArrayList<Royal> children) {
+	public Targaryen(String name, LocalDate dob, Gender gender,
+					 ArrayList<Royal> children) {
 
 		super(name, dob, gender, null, children);
 		//Collections.sort(this.children);

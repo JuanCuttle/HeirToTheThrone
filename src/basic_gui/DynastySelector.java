@@ -16,7 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import model.Dynasties;
+import model.DynastiesEnum;
 import model.Main;
 
 public class DynastySelector extends JFrame {
@@ -73,7 +73,7 @@ public class DynastySelector extends JFrame {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				new LineageSelector(Dynasties.TARGARYEN);
+				new LineageSelector(DynastiesEnum.TARGARYEN);
 			}
 		});
 		btnNewButton.addActionListener(new ActionListener() {
@@ -107,7 +107,7 @@ public class DynastySelector extends JFrame {
 		btnWindsor.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				new LineageSelector(Dynasties.WINDSOR);
+				new LineageSelector(DynastiesEnum.WINDSOR);
 			}
 		});
 		GridBagConstraints gbc_btnWindsor = new GridBagConstraints();

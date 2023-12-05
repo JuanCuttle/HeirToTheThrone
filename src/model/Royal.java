@@ -1,23 +1,25 @@
 package model;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
+import java.util.List;
 
 public class Royal implements Comparable<Royal> {
 
 	protected String name;
-	protected Date dob;
+	protected LocalDate dob;
 	protected Gender gender;
 	protected Boolean protestant;
-	protected ArrayList<Royal> children;
-	protected ArrayList<Royal> heirs;
+	protected List<Royal> children;
+	protected List<Royal> heirs;
 	protected Royal royalParent;
 	protected Boolean alive = true;
 	private Boolean visited = false;
 	private Boolean isInvalid; // Has left or been disinherited from the Royal Family
 
-	public Royal(String name, Date dob, Gender gender, Boolean protestant,
-			ArrayList<Royal> children) {
+	public Royal(String name, LocalDate dob, Gender gender, Boolean protestant,
+				 List<Royal> children) {
 		this.name = name;
 		this.dob = dob;
 		this.gender = gender;
@@ -55,11 +57,11 @@ public class Royal implements Comparable<Royal> {
 		this.gender = gender;
 	}
 
-	public ArrayList<Royal> getChildren() {
+	public List<Royal> getChildren() {
 		return children;
 	}
 
-	public void setChildren(ArrayList<Royal> children) {
+	public void setChildren(List<Royal> children) {
 		this.children = children;
 		this.heirs = new ArrayList<>();
 		for (Royal r : this.children) {
@@ -101,11 +103,11 @@ public class Royal implements Comparable<Royal> {
 		return maleChildren;
 	}
 
-	public Date getdob() {
+	public LocalDate getdob() {
 		return dob;
 	}
 
-	public void setdob(Date dob) {
+	public void setdob(LocalDate dob) {
 		this.dob = dob;
 	}
 

@@ -12,9 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import model.Dynasties;
-import model.Main;
-import model.Royal;
+import model.*;
 
 public class LineageSelector extends JFrame {
 
@@ -28,7 +26,7 @@ public class LineageSelector extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public LineageSelector(Dynasties dynasty) {
+	public LineageSelector(DynastiesEnum dynasty) {
 		
 
 			/*this.setIconImage(ImageIO.read(getClass().getResource(
@@ -41,9 +39,9 @@ public class LineageSelector extends JFrame {
 		
 		try {
 			switch(dynasty){
-				case TARGARYEN: options = Main.targaryens();
+				case TARGARYEN: options = TargaryenService.getTargaryens();
 							break;
-				default: options = Main.currentRoyalFamily();
+				default: options = WindsorService.getCurrentRoyalFamily();
 					break;
 			}
 		} catch (Exception e1) {
