@@ -16,9 +16,6 @@ import static model.Main.fullLineage;
 public class TudorService {
 
     public static void generateTudorLineage() throws Exception {
-
-        ArrayList<Royal> tudors = new ArrayList<>();
-
         Royal mary = new Royal("Mary I Tudor", LocalDate.of(1516, FEBRUARY, 18),
                 GenderEnum.FEMALE, true, new ArrayList<>());
         Royal elizabeth = new Royal("Elizabeth I Tudor", LocalDate.of(1533, SEPTEMBER, 7),
@@ -31,10 +28,7 @@ public class TudorService {
         Royal henryVIII = new Royal("Henry VIII Tudor", LocalDate.of(1491, JUNE, 28),
                 GenderEnum.MALE, true, henryChildren);
 
-        tudors.add(mary);
-        tudors.add(elizabeth);
-        tudors.add(edward);
-        tudors.add(henryVIII);
+        List<Royal> tudors = Arrays.asList(mary, elizabeth, edward, henryVIII);
 
         for (Royal r : tudors) {
             r.sortChildrenMaleFirstDob();
@@ -44,6 +38,5 @@ public class TudorService {
         }
 
         Main.getRecursiveLoDDMP(henryVIII);
-
     }
 }

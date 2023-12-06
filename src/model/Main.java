@@ -107,34 +107,32 @@ public class Main {
 
 		result.add(root);
 
-		for (int j = 0; j < heirs.size(); j++) {
-			if (heirs.get(j).getRoyalParent() == null) {
-				heirs.get(j).setRoyalParent(root);
-			}
-			if (!heirs.get(j).getVisited()) {
-				ArrayList<Royal> children = findHeirRecursiveDP(heirs.get(j));
-				for (int k = 0; k < children.size(); k++) {
-					Royal child = children.get(k);
-					if (!result.contains(child) && child.canBeHeir()) {
-						result.add(child);
-					}
-				}
-			}
-		}
+        for (Royal heir : heirs) {
+            if (heir.getRoyalParent() == null) {
+                heir.setRoyalParent(root);
+            }
+            if (!heir.getVisited()) {
+                ArrayList<Royal> children = findHeirRecursiveDP(heir);
+                for (Royal child : children) {
+                    if (!result.contains(child) && child.canBeHeir()) {
+                        result.add(child);
+                    }
+                }
+            }
+        }
 
 		ArrayList<Royal> kin = root.getKin();
 
-		for (int j = 0; j < kin.size(); j++) {
-			if (!kin.get(j).getVisited()) {
-				ArrayList<Royal> children = findHeirRecursiveDP(kin.get(j));
-				for (int k = 0; k < children.size(); k++) {
-					Royal child = children.get(k);
-					if (!result.contains(child) && child.canBeHeir()) {
-						result.add(child);
-					}
-				}
-			}
-		}
+        for (Royal royal : kin) {
+            if (!royal.getVisited()) {
+                ArrayList<Royal> children = findHeirRecursiveDP(royal);
+                for (Royal child : children) {
+                    if (!result.contains(child) && child.canBeHeir()) {
+                        result.add(child);
+                    }
+                }
+            }
+        }
 
 		Royal parent = root.getRoyalParent();
 
@@ -147,18 +145,16 @@ public class Main {
 				System.out.println(uncles);
 			}
 
-			for (int j = 0; j < uncles.size(); j++) {
-				if (!uncles.get(j).getVisited()) {
-					ArrayList<Royal> unclesChildren = findHeirRecursiveDP(uncles
-							.get(j));
-					for (int k = 0; k < unclesChildren.size(); k++) {
-						Royal child = unclesChildren.get(k);
-						if (!result.contains(child) && child.canBeHeir()) {
-							result.add(child);
-						}
-					}
-				}
-			}
+            for (Royal uncle : uncles) {
+                if (!uncle.getVisited()) {
+                    ArrayList<Royal> unclesChildren = findHeirRecursiveDP(uncle);
+                    for (Royal child : unclesChildren) {
+                        if (!result.contains(child) && child.canBeHeir()) {
+                            result.add(child);
+                        }
+                    }
+                }
+            }
 		}
 
 		return result;
@@ -266,54 +262,43 @@ public class Main {
 
 	public static ArrayList<Royal> findHeirRecursiveDMP(Royal root) {
 
-		if (root instanceof Targaryen) {
-			root = (Targaryen) root;
-		}
-
 		// root.sortChildrenMaleFirstDob();
 
 		if (debugMode)
 			System.out.println("[DEBUG] Root: " + root.getName());
 
-		ArrayList<Royal> result = new ArrayList<Royal>();
+		ArrayList<Royal> result = new ArrayList<>();
 		List<Royal> heirs = root.getChildren();
 
 		result.add(root);
 		root.setVisited(true);
 
-		for (int j = 0; j < heirs.size(); j++) {
-			if (heirs.get(j).getRoyalParent() == null) {
-				heirs.get(j).setRoyalParent(root);
-			}
-			if (!heirs.get(j).getVisited()) {
-				// heirs.get(j).setVisited(true);
-
-				ArrayList<Royal> children = findHeirRecursiveDMP(heirs.get(j));
-
-				for (int k = 0; k < children.size(); k++) {
-					Royal child = children.get(k);
-					if (!result.contains(child) && child.canBeHeir()) {
-						result.add(child);
-						// child.setVisited(true);
-					}
-				}
-			}
-		}
+        for (Royal heir : heirs) {
+            if (heir.getRoyalParent() == null) {
+                heir.setRoyalParent(root);
+            }
+            if (!heir.getVisited()) {
+                ArrayList<Royal> children = findHeirRecursiveDMP(heir);
+                for (Royal child : children) {
+                    if (!result.contains(child) && child.canBeHeir()) {
+                        result.add(child);
+                    }
+                }
+            }
+        }
 
 		ArrayList<Royal> kin = root.getKin();
 
-		for (int j = 0; j < kin.size(); j++) {
-			if (!kin.get(j).getVisited()) {
-				// kin.get(j).setVisited(true);
-				ArrayList<Royal> children = findHeirRecursiveDMP(kin.get(j));
-				for (int k = 0; k < children.size(); k++) {
-					Royal child = children.get(k);
-					if (!result.contains(child) && child.canBeHeir()) {
-						result.add(child);
-					}
-				}
-			}
-		}
+        for (Royal royal : kin) {
+            if (!royal.getVisited()) {
+                ArrayList<Royal> children = findHeirRecursiveDMP(royal);
+                for (Royal child : children) {
+                    if (!result.contains(child) && child.canBeHeir()) {
+                        result.add(child);
+                    }
+                }
+            }
+        }
 
 		Royal parent = root.getRoyalParent();
 
@@ -325,23 +310,16 @@ public class Main {
 				System.out.println("Parent: " + parent.getName());
 				System.out.println(uncles);
 			}
-			for (int j = 0; j < uncles.size(); j++) {
-				if (!uncles.get(j).getVisited()) {
-					// uncles.get(j).setVisited(true);
-					ArrayList<Royal> unclesChildren = findHeirRecursiveDMP(uncles
-							.get(j));
-					for (int k = 0; k < unclesChildren.size(); k++) {
-						Royal child = unclesChildren.get(k);
-						/*
-						 * if (child.getRoyalParent() == null){
-						 * child.setRoyalParent(uncles.get(j)); }
-						 */
-						if (!result.contains(child) && child.canBeHeir()) {
-							result.add(child);
-						}
-					}
-				}
-			}
+            for (Royal uncle : uncles) {
+                if (!uncle.getVisited()) {
+                    ArrayList<Royal> unclesChildren = findHeirRecursiveDMP(uncle);
+                    for (Royal child : unclesChildren) {
+                        if (!result.contains(child) && child.canBeHeir()) {
+                            result.add(child);
+                        }
+                    }
+                }
+            }
 		}
 
 		return result;
@@ -368,7 +346,7 @@ public class Main {
 		String title = "\nLine of descent of " + root.getName() + ":\n";
 		String message = "";
 		String messageAux = "";
-		ArrayList<Royal> lineage = new ArrayList<Royal>();
+		ArrayList<Royal> lineage;
 		lineage = findHeirRecursiveDP(h);
 		if (lineage.size() <= 12) {
 			for (int i = 1; i < lineage.size(); i++) {
@@ -413,7 +391,7 @@ public class Main {
 		}
 	}
 
-	public static void getLoDDMP(Royal root) throws Exception {
+	public static void getLoDDMP(Royal root) {
 		Royal h = root;
 		Royal aux;
 		int i = 0;
@@ -430,12 +408,11 @@ public class Main {
 	}
 
 	public static void getRecursiveLoDDMP(Royal root) throws Exception {
-		Royal h = root;
 		String title = "\nLine of descent of " + root.getName() + ":\n";
 		String message = "";
 		String messageAux = "";
-		ArrayList<Royal> lineage = new ArrayList<Royal>();
-		lineage = findHeirRecursiveDMP(h);
+		ArrayList<Royal> lineage;
+		lineage = findHeirRecursiveDMP(root);
 		if (lineage.size() <= 12) {
 			for (int i = 1; i < lineage.size(); i++) {
 				Royal aux = lineage.get(i);
@@ -478,7 +455,6 @@ public class Main {
 		}
 	}
 
-	@SuppressWarnings("unused")
 	private static String showHeirDP(Royal root) {
 		Royal heir = findHeirDP(root);
 		String message = "";
@@ -494,7 +470,6 @@ public class Main {
 		return message;
 	}
 
-	@SuppressWarnings("unused")
 	private static String showHeirDMP(Royal root) {
 		Royal heir = findHeirDMP(root);
 		String message = "";

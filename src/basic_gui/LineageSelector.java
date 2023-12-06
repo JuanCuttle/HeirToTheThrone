@@ -1,22 +1,17 @@
 package basic_gui;
 
-import java.awt.BorderLayout;
-import java.awt.Toolkit;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import model.*;
+import model.Main;
 import model.entities.Royal;
 import model.enums.DynastiesEnum;
 import model.services.TargaryenService;
 import model.services.WindsorService;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.List;
 
 public class LineageSelector extends JFrame {
 
@@ -25,7 +20,7 @@ public class LineageSelector extends JFrame {
 	 */
 	private static final long serialVersionUID = -6345581665543710575L;
 	private JPanel contentPane;
-	private static ArrayList<Royal> options;
+	private static List<Royal> options;
 
 	/**
 	 * Create the frame.
