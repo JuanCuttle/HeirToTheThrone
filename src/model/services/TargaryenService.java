@@ -1,72 +1,65 @@
 package model.services;
 
-import model.enums.GenderEnum;
 import model.Main;
 import model.entities.Royal;
 import model.entities.Targaryen;
+import model.enums.GenderEnum;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class TargaryenService {
 
     private static final LocalDate currentLocalDate = LocalDate.now();
 
-    public static ArrayList<Royal> getTargaryens() throws Exception {
-        ArrayList<Royal> targaryens = new ArrayList<>();
-
+    public static List<Royal> getTargaryens() throws Exception {
         Targaryen rhaego = new Targaryen("Rhaego Targaryen", currentLocalDate.withYear(298),
                 GenderEnum.MALE, new ArrayList<>());
 
-        ArrayList<Royal> danysChildren = new ArrayList<>();
-        danysChildren.add(rhaego);
+        List<Royal> danysChildren = Arrays.asList(rhaego);
 
         Targaryen dany = new Targaryen("Daenerys 'Stormborn' Targaryen",
                 currentLocalDate.withYear(284), GenderEnum.FEMALE, danysChildren);
         dany.setAlive(true);
 
-        Targaryen viserysgot = new Targaryen(
+        Targaryen viserysGoT = new Targaryen(
                 "Viserys Targaryen (son of Aerys II)", currentLocalDate.withYear(276),
                 GenderEnum.MALE, new ArrayList<>());
 
         Targaryen aegonGriff = new Targaryen("Aegon 'Young Griff' Targaryen",
                 currentLocalDate.withYear(282), GenderEnum.MALE, new ArrayList<>());
-        Targaryen rhaenysgot = new Targaryen(
+
+        Targaryen rhaenysGoT = new Targaryen(
                 "Rhaenys Targaryen (daughter of Rhaegar)", currentLocalDate.withYear(280),
                 GenderEnum.FEMALE, new ArrayList<>());
 
-        ArrayList<Royal> rhaegarsChildren = new ArrayList<>();
-        rhaegarsChildren.add(rhaenysgot);
-        rhaegarsChildren.add(aegonGriff);
+        List<Royal> rhaegarsChildren = Arrays.asList(rhaenysGoT, aegonGriff);
 
         Targaryen rhaegar = new Targaryen("Rhaegar Targaryen", currentLocalDate.withYear(259),
                 GenderEnum.MALE, rhaegarsChildren);
         aegonGriff.setRoyalParent(rhaegar);
 
-        ArrayList<Royal> aerysChildren = new ArrayList<>();
-        aerysChildren.add(rhaegar);
-        aerysChildren.add(viserysgot);
-        aerysChildren.add(dany);
+        List<Royal> aerysChildren = Arrays.asList(rhaegar, viserysGoT, dany);
 
         Targaryen aerysII = new Targaryen("Aerys II 'Mad King' Targaryen",
                 currentLocalDate.withYear(244), GenderEnum.MALE, aerysChildren);
 
-        ArrayList<Royal> rhaellasChildren = new ArrayList<>();
-        rhaellasChildren.addAll(aerysChildren);
+        List<Royal> rhaellasChildren = new ArrayList<>(aerysChildren);
 
         Targaryen rhaella = new Targaryen(
                 "Rhaella Targaryen (daughter of Jaehaerys II)", currentLocalDate.withYear(245),
                 GenderEnum.FEMALE, rhaellasChildren);
 
-        ArrayList<Royal> jaehaerysIIChildren = new ArrayList<>();
-        jaehaerysIIChildren.add(aerysII);
-        jaehaerysIIChildren.add(rhaella);
+        List<Royal> jaehaerysIIChildren = Arrays.asList(aerysII, rhaella);
 
         Targaryen jaehaerysII = new Targaryen("Jaehaerys II Targaryen",
                 currentLocalDate.withYear(225), GenderEnum.MALE, jaehaerysIIChildren);
 
-        ArrayList<Royal> shaerasChildren = new ArrayList<>(); //
-        shaerasChildren.addAll(jaehaerysIIChildren);
+        List<Royal> shaerasChildren = new ArrayList<>(jaehaerysIIChildren);
 
         Targaryen shaera = new Targaryen("Shaera Targaryen", currentLocalDate.withYear(226),
                 GenderEnum.FEMALE, shaerasChildren);
@@ -86,16 +79,12 @@ public class TargaryenService {
                 currentLocalDate.withYear(290), GenderEnum.FEMALE, new ArrayList<>());
         Targaryen tommenBaratheon = new Targaryen("Tommen Baratheon", currentLocalDate.withYear(291), GenderEnum.MALE, new ArrayList<>());
 
-        ArrayList<Royal> robertsChildren = new ArrayList<>();
-        robertsChildren.add(joffreyBaratheon);
-        robertsChildren.add(myrcellaBaratheon);
-        robertsChildren.add(tommenBaratheon);
+        List<Royal> robertsChildren = Arrays.asList(joffreyBaratheon, myrcellaBaratheon, tommenBaratheon);
 
         Targaryen shireenBaratheon = new Targaryen("Shireen Baratheon",
                 currentLocalDate.withYear(289), GenderEnum.FEMALE, new ArrayList<>());
 
-        ArrayList<Royal> stannisChildren = new ArrayList<>();
-        stannisChildren.add(shireenBaratheon);
+        List<Royal> stannisChildren = Arrays.asList(shireenBaratheon);
 
         Targaryen robertBaratheon = new Targaryen("Robert I Baratheon",
                 currentLocalDate.withYear(262), GenderEnum.MALE, robertsChildren);
@@ -103,26 +92,17 @@ public class TargaryenService {
                 currentLocalDate.withYear(264), GenderEnum.MALE, stannisChildren);
         Targaryen renlyBaratheon = new Targaryen("Renly Baratheon", currentLocalDate.withYear(277), GenderEnum.MALE, new ArrayList<>());
 
-        ArrayList<Royal> steffonsChildren = new ArrayList<>();
-        steffonsChildren.add(robertBaratheon);
-        steffonsChildren.add(stannisBaratheon);
-        steffonsChildren.add(renlyBaratheon);
+        List<Royal> steffonsChildren = Arrays.asList(robertBaratheon, stannisBaratheon, renlyBaratheon);
 
         Targaryen steffonBaratheon = new Targaryen("Steffon Baratheon",
                 currentLocalDate.withYear(246), GenderEnum.MALE, steffonsChildren);
 
-        ArrayList<Royal> rhaellesChildren = new ArrayList<>();
-        rhaellesChildren.add(steffonBaratheon);
+        List<Royal> rhaellesChildren = Arrays.asList(steffonBaratheon);
 
         Targaryen rhaelle = new Targaryen("Rhaelle Targaryen", currentLocalDate.withYear(231),
                 GenderEnum.FEMALE, rhaellesChildren);
 
-        ArrayList<Royal> aegonVChildren = new ArrayList<>();
-        aegonVChildren.add(duncan);
-        aegonVChildren.add(jaehaerysII);
-        aegonVChildren.add(shaera);
-        aegonVChildren.add(daeron228);
-        aegonVChildren.add(rhaelle);
+        List<Royal> aegonVChildren = Arrays.asList(duncan, jaehaerysII, shaera, daeron228, rhaelle);
 
         Targaryen aegonV = new Targaryen("Aegon V 'Egg' Targaryen", currentLocalDate.withYear(200), GenderEnum.MALE, aegonVChildren);
 
@@ -138,8 +118,7 @@ public class TargaryenService {
                 "Maegor Targaryen (son of Aerion 'Brightflame')",
                 currentLocalDate.withYear(232), GenderEnum.MALE, new ArrayList<>());
 
-        ArrayList<Royal> aerionsChildren = new ArrayList<>();
-        aerionsChildren.add(maegor232);
+        List<Royal> aerionsChildren = Arrays.asList(maegor232);
 
         Targaryen aerion = new Targaryen("Aerion 'Brightflame' Targaryen",
                 currentLocalDate.withYear(192), GenderEnum.MALE, aerionsChildren);
@@ -151,13 +130,7 @@ public class TargaryenService {
         Targaryen rhae = new Targaryen("Rhae Targaryen", currentLocalDate.withYear(205),
                 GenderEnum.FEMALE, new ArrayList<>());
 
-        ArrayList<Royal> maekarsChildren = new ArrayList<>();
-        maekarsChildren.add(aegonV);
-        maekarsChildren.add(maesterAemon);
-        maekarsChildren.add(daeronDrunk);
-        maekarsChildren.add(aerion);
-        maekarsChildren.add(daella);
-        maekarsChildren.add(rhae);
+        List<Royal> maekarsChildren = Arrays.asList(aegonV, maesterAemon, daeronDrunk, aerion, daella, rhae);
 
         Targaryen maekar = new Targaryen("Maekar I 'The Anvil' Targaryen",
                 currentLocalDate.withYear(176), GenderEnum.MALE, maekarsChildren);
@@ -169,9 +142,7 @@ public class TargaryenService {
                 "Matarys 'the even younger Prince' Targaryen", currentLocalDate.withYear(184),
                 GenderEnum.MALE, new ArrayList<>());
 
-        ArrayList<Royal> baelor170sChildren = new ArrayList<>();
-        baelor170sChildren.add(valarr);
-        baelor170sChildren.add(matarys);
+        List<Royal> baelor170sChildren = Arrays.asList(valarr, matarys);
 
         Targaryen baelor170 = new Targaryen("Baelor 'Breakspear' Targaryen",
                 currentLocalDate.withYear(170), GenderEnum.MALE, baelor170sChildren);
@@ -181,26 +152,21 @@ public class TargaryenService {
 
         Targaryen aelora = new Targaryen("Aelora Targaryen", currentLocalDate.withYear(199),
                 GenderEnum.FEMALE, new ArrayList<>());
+
         Targaryen aelor = new Targaryen("Aelor Targaryen", currentLocalDate.withYear(199),
                 GenderEnum.MALE, new ArrayList<>());
-        ArrayList<Royal> daenorasChildren = new ArrayList<>();
-        daenorasChildren.addAll(aerionsChildren);
+
+        List<Royal> daenorasChildren = new ArrayList<>(aerionsChildren);
+
         Targaryen daenora = new Targaryen("Daenora Targaryen", currentLocalDate.withYear(213),
                 GenderEnum.FEMALE, daenorasChildren);
 
-        ArrayList<Royal> rhaegelsChildren = new ArrayList<>();
-        rhaegelsChildren.add(aelora);
-        rhaegelsChildren.add(aelor);
-        rhaegelsChildren.add(daenora);
+        List<Royal> rhaegelsChildren = Arrays.asList(aelora, aelor, daenora);
 
         Targaryen rhaegel = new Targaryen("Rhaegel Targaryen", currentLocalDate.withYear(175),
                 GenderEnum.MALE, rhaegelsChildren);
 
-        ArrayList<Royal> daeronIIsChildren = new ArrayList<>();
-        daeronIIsChildren.add(rhaegel);
-        daeronIIsChildren.add(aerysI);
-        daeronIIsChildren.add(baelor170);
-        daeronIIsChildren.add(maekar);
+        List<Royal> daeronIIsChildren = Arrays.asList(rhaegel, aerysI, baelor170, maekar);
 
         Targaryen daeronII = new Targaryen("Daeron II 'the Good' Targaryen",
                 currentLocalDate.withYear(153), GenderEnum.MALE, daeronIIsChildren);
@@ -209,16 +175,12 @@ public class TargaryenService {
                 "Daenerys Targaryen (daughter of Aegon IV)", currentLocalDate.withYear(172),
                 GenderEnum.FEMALE, new ArrayList<>());
 
-        ArrayList<Royal> aegonIVsChildren = new ArrayList<>();
-        aegonIVsChildren.add(daeronII);
-        aegonIVsChildren.add(daenerys);
+        List<Royal> aegonIVsChildren = Arrays.asList(daeronII, daenerys);
 
         Targaryen aegonIV = new Targaryen("Aegon IV 'the Unworthy' Targaryen",
                 currentLocalDate.withYear(135), GenderEnum.MALE, aegonIVsChildren);
 
-        ArrayList<Royal> naerysChildren = new ArrayList<>();
-        naerysChildren.add(daeronII);
-        naerysChildren.add(daenerys);
+        List<Royal> naerysChildren = new ArrayList<>(aegonIVsChildren);
 
         Targaryen naerys = new Targaryen("Naerys Targaryen", currentLocalDate.withYear(138),
                 GenderEnum.FEMALE, naerysChildren);
@@ -226,10 +188,7 @@ public class TargaryenService {
         Targaryen aemon136 = new Targaryen("Aemon 'Dragonknight' Targaryen",
                 currentLocalDate.withYear(136), GenderEnum.MALE, new ArrayList<>());
 
-        ArrayList<Royal> viserysIIsChildren = new ArrayList<>();
-        viserysIIsChildren.add(aegonIV);
-        viserysIIsChildren.add(naerys);
-        viserysIIsChildren.add(aemon136);
+        List<Royal> viserysIIsChildren = Arrays.asList(aegonIV, naerys, aemon136);
 
         Targaryen viserysII = new Targaryen("Viserys II  Targaryen", currentLocalDate.withYear(122), GenderEnum.MALE, viserysIIsChildren);
 
@@ -254,9 +213,7 @@ public class TargaryenService {
         Targaryen benPlumm = new Targaryen("Ben Plumm", currentLocalDate.withYear(240),
                 GenderEnum.MALE, new ArrayList<>());
 
-        ArrayList<Royal> viserysPlummDesc = new ArrayList<>();
-        viserysPlummDesc.add(benPlumm);
-        viserysPlummDesc.add(philipPlumm);
+        List<Royal> viserysPlummDesc = Arrays.asList(benPlumm, philipPlumm);
 
         Targaryen viserysPlumm = new Targaryen("Viserys Plumm", currentLocalDate.withYear(176),
                 GenderEnum.MALE, viserysPlummDesc);
@@ -272,22 +229,12 @@ public class TargaryenService {
         Targaryen joyPenrose = new Targaryen("Joy Penrose", currentLocalDate.withYear(193),
                 GenderEnum.FEMALE, new ArrayList<>());
 
-        ArrayList<Royal> elaenasChildren = new ArrayList<>();
-        elaenasChildren.add(viserysPlumm);
-        elaenasChildren.add(robinPenrose);
-        elaenasChildren.add(laenaPenrose);
-        elaenasChildren.add(jocelynPenrose);
-        elaenasChildren.add(joyPenrose);
+        List<Royal> elaenasChildren = Arrays.asList(viserysPlumm, robinPenrose, laenaPenrose, jocelynPenrose, joyPenrose);
 
         Targaryen elaena = new Targaryen("Elaena Targaryen", currentLocalDate.withYear(150),
                 GenderEnum.FEMALE, elaenasChildren);
 
-        ArrayList<Royal> aegonIIIsChildren = new ArrayList<>();
-        aegonIIIsChildren.add(daeronI);
-        aegonIIIsChildren.add(baelorI);
-        aegonIIIsChildren.add(daena);
-        aegonIIIsChildren.add(rhaena147);
-        aegonIIIsChildren.add(elaena);
+        List<Royal> aegonIIIsChildren = Arrays.asList(daeronI, baelorI, daena, rhaena147, elaena);
 
         Targaryen aegonIII = new Targaryen("Aegon III 'the Unlucky' Targaryen",
                 currentLocalDate.withYear(120), GenderEnum.MALE, aegonIIIsChildren);
@@ -300,12 +247,7 @@ public class TargaryenService {
 
         Targaryen joffreyVelaryon = new Targaryen("Joffrey Velaryon", currentLocalDate.withYear(117), GenderEnum.MALE, new ArrayList<>());
 
-        ArrayList<Royal> rhaenyrasChildren = new ArrayList<>();
-        rhaenyrasChildren.add(aegonIII);
-        rhaenyrasChildren.add(viserysII);
-        rhaenyrasChildren.add(jacaerys);
-        rhaenyrasChildren.add(lucerys);
-        rhaenyrasChildren.add(joffreyVelaryon);
+        List<Royal> rhaenyrasChildren = Arrays.asList(aegonIII, viserysII, jacaerys, lucerys, joffreyVelaryon);
 
         Targaryen rhaenyra = new Targaryen(
                 "Rhaenyra 'the Half-Year Queen' Targaryen", currentLocalDate.withYear(197),
@@ -319,10 +261,7 @@ public class TargaryenService {
         Targaryen maelor = new Targaryen("Maelor Targaryen", currentLocalDate.withYear(127),
                 GenderEnum.MALE, new ArrayList<>());
 
-        ArrayList<Royal> aegonIIsChildren = new ArrayList<>();
-        aegonIIsChildren.add(jaehaerys123);
-        aegonIIsChildren.add(jaehaera);
-        aegonIIsChildren.add(maelor);
+        List<Royal> aegonIIsChildren = Arrays.asList(jaehaerys123, jaehaera, maelor);
 
         Targaryen aegonII = new Targaryen("Aegon II 'the Elder' Targaryen",
                 currentLocalDate.withYear(107), GenderEnum.MALE, aegonIIsChildren);
@@ -336,37 +275,11 @@ public class TargaryenService {
         Targaryen daeron114 = new Targaryen("Daeron 'the Daring' Targaryen",
                 currentLocalDate.withYear(114), GenderEnum.MALE, new ArrayList<>());
 
-        ArrayList<Royal> viserysIsChildren = new ArrayList<>();
-        viserysIsChildren.add(rhaenyra);
-        viserysIsChildren.add(aegonII);
-        viserysIsChildren.add(helaena);
-        viserysIsChildren.add(aemond);
-        viserysIsChildren.add(daeron114);
+        List<Royal> viserysIsChildren = Arrays.asList(rhaenyra, aegonII, helaena, aemond, daeron114);
 
         Targaryen viserysI = new Targaryen(
                 "Viserys I 'the Young King' Targaryen", currentLocalDate.withYear(77),
                 GenderEnum.MALE, viserysIsChildren);
-
-        ArrayList<Royal> daemonsChildren = new ArrayList<>();
-        daemonsChildren.add(aegonIII);
-        daemonsChildren.add(viserysII);
-
-        Targaryen daemon = new Targaryen("Daemon 'the Rogue Prince' Targaryen",
-                currentLocalDate.withYear(81), GenderEnum.MALE, daemonsChildren);
-
-        ArrayList<Royal> baelonsChildren = new ArrayList<>();
-        baelonsChildren.add(viserysI);
-        baelonsChildren.add(daemon);
-
-        Targaryen baelon = new Targaryen(
-                "Baelon 'the Spring Prince' Targaryen", currentLocalDate.withYear(54),
-                GenderEnum.MALE, baelonsChildren);
-
-        ArrayList<Royal> alyssasChildren = new ArrayList<>();
-        alyssasChildren.addAll(baelonsChildren);
-
-        Targaryen alyssa = new Targaryen("Alyssa Targaryen", currentLocalDate.withYear(52),
-                GenderEnum.FEMALE, alyssasChildren);
 
         Targaryen rhaena = new Targaryen(
                 "Rhaena 'of Pentos' Targaryen (daughter of Laena Velaryon)",
@@ -375,44 +288,49 @@ public class TargaryenService {
         Targaryen baela = new Targaryen("Baela Targaryen", currentLocalDate.withYear(116),
                 GenderEnum.FEMALE, new ArrayList<>());
 
-        ArrayList<Royal> laenasChildren = new ArrayList<>();
-        laenasChildren.add(rhaena);
-        laenasChildren.add(baela);
+        List<Royal> laenasChildren = Arrays.asList(rhaena, baela);
 
         Targaryen laena = new Targaryen("Laena Velaryon", currentLocalDate.withYear(93),
                 GenderEnum.FEMALE, laenasChildren);
-        daemonsChildren.addAll(laenasChildren);
 
-        ArrayList<Royal> laenorsChildren = new ArrayList<>();
-        laenorsChildren.add(jacaerys);
-        laenorsChildren.add(lucerys);
-        laenorsChildren.add(joffreyVelaryon);
+        List<Royal> daemonsChildren = Arrays.asList(aegonIII, viserysII, rhaena, baela);
+
+        Targaryen daemon = new Targaryen("Daemon 'the Rogue Prince' Targaryen",
+                currentLocalDate.withYear(81), GenderEnum.MALE, daemonsChildren);
+
+        List<Royal> baelonsChildren = Arrays.asList(viserysI, daemon);
+
+        Targaryen baelon = new Targaryen(
+                "Baelon 'the Spring Prince' Targaryen", currentLocalDate.withYear(54),
+                GenderEnum.MALE, baelonsChildren);
+
+        List<Royal> alyssasChildren = new ArrayList<>(baelonsChildren);
+
+        Targaryen alyssa = new Targaryen("Alyssa Targaryen", currentLocalDate.withYear(52),
+                GenderEnum.FEMALE, alyssasChildren);
+
+        List<Royal> laenorsChildren = Arrays.asList(jacaerys, lucerys, joffreyVelaryon);
 
         Targaryen laenor = new Targaryen("Laenor Velaryon", currentLocalDate.withYear(94),
                 GenderEnum.MALE, laenorsChildren);
 
-        ArrayList<Royal> rhaenys74sChildren = new ArrayList<>();
-        rhaenys74sChildren.add(laena);
-        rhaenys74sChildren.add(laenor);
+        List<Royal> rhaenys74sChildren = Arrays.asList(laena, laenor);
 
         Targaryen rhaenys74 = new Targaryen(
                 "Rhaenys 'the Queen who never was' Targaryen", currentLocalDate.withYear(74),
                 GenderEnum.FEMALE, rhaenys74sChildren);
 
-        ArrayList<Royal> aemonsChildren = new ArrayList<>();
-        aemonsChildren.add(rhaenys74);
+        List<Royal> aemonsChildren = Arrays.asList(rhaenys74);
 
         Targaryen aemon = new Targaryen("Aemon Targaryen (son of Jaehaerys I)",
                 currentLocalDate.withYear(53), GenderEnum.MALE, aemonsChildren);
 
-        ArrayList<Royal> aemmasChildren = new ArrayList<>();
-        aemmasChildren.add(rhaenyra);
+        List<Royal> aemmasChildren = Arrays.asList(rhaenyra);
 
         Targaryen aemma = new Targaryen("Aemma Arryn", currentLocalDate.withYear(82),
                 GenderEnum.FEMALE, aemmasChildren);
 
-        ArrayList<Royal> daellasChildren = new ArrayList<>();
-        daellasChildren.add(aemma);
+        List<Royal> daellasChildren = Arrays.asList(aemma);
 
         Targaryen daella55 = new Targaryen(
                 "Daella Targaryen (daughter of Jaehaerys I)", currentLocalDate.withYear(55),
@@ -430,14 +348,7 @@ public class TargaryenService {
                 GenderEnum.FEMALE, new ArrayList<>());
         saera.setAbdicated(true);
 
-        ArrayList<Royal> jaehaerysIsChildren = new ArrayList<>();
-        jaehaerysIsChildren.add(alyssa);
-        jaehaerysIsChildren.add(aemon);
-        jaehaerysIsChildren.add(baelon);
-        jaehaerysIsChildren.add(daella55);
-        jaehaerysIsChildren.add(vaegon);
-        jaehaerysIsChildren.add(maegella);
-        jaehaerysIsChildren.add(saera);
+        List<Royal> jaehaerysIsChildren = Arrays.asList(alyssa, aemon, baelon, daella55, vaegon, maegella, saera);
 
         Targaryen jaehaerysI = new Targaryen(
                 "Jaehaerys I 'the Wise' Targaryen", currentLocalDate.withYear(34), GenderEnum.MALE,
@@ -450,15 +361,12 @@ public class TargaryenService {
                 "Rhaella Targaryen (daughter of Aegon, son of Aenys I)",
                 currentLocalDate.withYear(43), GenderEnum.FEMALE, new ArrayList<>());
 
-        ArrayList<Royal> aegon26sChildren = new ArrayList<>();
-        aegon26sChildren.add(aerea);
-        aegon26sChildren.add(rhaella43);
+        List<Royal> aegon26sChildren = Arrays.asList(aerea, rhaella43);
 
         Targaryen aegon26 = new Targaryen("Aegon Targaryen (son of Aenys I)",
                 currentLocalDate.withYear(26), GenderEnum.MALE, aegon26sChildren);
 
-        ArrayList<Royal> rhaena23sChildren = new ArrayList<>();
-        rhaena23sChildren.addAll(aegon26sChildren);
+        List<Royal> rhaena23sChildren = new ArrayList<>(aegon26sChildren);
 
         Targaryen rhaena23 = new Targaryen(
                 "Rhaena Targaryen (daughter of Aenys I)", currentLocalDate.withYear(23),
@@ -471,12 +379,7 @@ public class TargaryenService {
         Targaryen alysanne = new Targaryen("(Good Queen) Alysanne Targaryen",
                 currentLocalDate.withYear(36), GenderEnum.FEMALE, jaehaerysIsChildren);
 
-        ArrayList<Royal> aenysIsChildren = new ArrayList<>();
-        aenysIsChildren.add(jaehaerysI);
-        aenysIsChildren.add(rhaena23);
-        aenysIsChildren.add(aegon26);
-        aenysIsChildren.add(viserys29);
-        aenysIsChildren.add(alysanne);
+        List<Royal> aenysIsChildren = Arrays.asList(jaehaerysI, rhaena23, aegon26, viserys29, alysanne);
 
         Targaryen aenysI = new Targaryen("Aenys I  Targaryen", currentLocalDate.withYear(7),
                 GenderEnum.MALE, aenysIsChildren);
@@ -484,30 +387,23 @@ public class TargaryenService {
         Targaryen maegorI = new Targaryen("Maegor I 'the Cruel' Targaryen",
                 currentLocalDate.withYear(12), GenderEnum.MALE, new ArrayList<>());
 
-        ArrayList<Royal> aegonIsChildren = new ArrayList<>();
-        aegonIsChildren.add(aenysI);
-        aegonIsChildren.add(maegorI);
+        List<Royal> aegonIsChildren = Arrays.asList(aenysI, maegorI);
 
         Targaryen aegonTheConqueror = new Targaryen(
                 "Aegon I 'the Conqueror' Targaryen", currentLocalDate.withYear(-27),
                 GenderEnum.MALE, aegonIsChildren);
 
-        ArrayList<Royal> rhaenysChildren = new ArrayList<>();
-        rhaenysChildren.add(aenysI);
+        List<Royal> rhaenysChildren = Arrays.asList(aenysI);
 
         Targaryen rhaenys = new Targaryen("Rhaenys Targaryen", currentLocalDate.withYear(-25),
                 GenderEnum.FEMALE, rhaenysChildren);
 
-        ArrayList<Royal> visenyasChildren = new ArrayList<>();
-        visenyasChildren.add(maegorI);
+        List<Royal> visenyasChildren = Arrays.asList(maegorI);
 
         Targaryen visenya = new Targaryen("Visenya Targaryen", currentLocalDate.withYear(-28),
                 GenderEnum.FEMALE, visenyasChildren);
 
-        ArrayList<Royal> daddyAerionsChildren = new ArrayList<>();
-        daddyAerionsChildren.add(aegonTheConqueror);
-        daddyAerionsChildren.add(rhaenys);
-        daddyAerionsChildren.add(visenya);
+        List<Royal> daddyAerionsChildren = Arrays.asList(aegonTheConqueror, rhaenys, visenya);
 
         Targaryen daddyAerion = new Targaryen(
                 "Aerion Targaryen (father of Aegon I)", currentLocalDate.withYear(-52),
@@ -517,104 +413,20 @@ public class TargaryenService {
         visenya.setRoyalParent(daddyAerion);
         aegonTheConqueror.setRoyalParent(daddyAerion);
 
-        targaryens.add(daddyAerion);
-        targaryens.add(visenya);
-        targaryens.add(rhaenys);
-        targaryens.add(aegonTheConqueror);
-        targaryens.add(maegorI);
-        targaryens.add(aenysI);
-        targaryens.add(rhaena23);
-        targaryens.add(aegon26);
-        targaryens.add(aerea);
-        targaryens.add(rhaella43);
-        targaryens.add(viserys29);
-        targaryens.add(alysanne);
-        targaryens.add(jaehaerysI);
-        targaryens.add(daella55);
-        targaryens.add(aemma);
-        targaryens.add(vaegon);
-        targaryens.add(maegella);
-        targaryens.add(saera);
-        targaryens.add(alyssa);
-        targaryens.add(aemon);
-        targaryens.add(rhaenys74);
-        targaryens.add(laenor);
-        targaryens.add(laena);
-        targaryens.add(rhaena);
-        targaryens.add(baela);
-        targaryens.add(baelon);
-        targaryens.add(daemon);
-        targaryens.add(viserysI);
-        targaryens.add(helaena);
-        targaryens.add(aemond);
-        targaryens.add(daeron114);
-        targaryens.add(aegonII);
-        targaryens.add(jaehaerys123);
-        targaryens.add(jaehaera);
-        targaryens.add(maelor);
-        targaryens.add(rhaenyra);
-        targaryens.add(jacaerys);
-        targaryens.add(lucerys);
-        targaryens.add(joffreyVelaryon);
-        targaryens.add(aegonIII);
-        targaryens.add(daeronI);
-        targaryens.add(baelorI);
-        targaryens.add(daena);
-        targaryens.add(rhaena147);
-        targaryens.add(elaena);
-        targaryens.add(robinPenrose);
-        targaryens.add(laenaPenrose);
-        targaryens.add(jocelynPenrose);
-        targaryens.add(joyPenrose);
-        targaryens.add(viserysPlumm);
-        targaryens.add(benPlumm);
-        targaryens.add(philipPlumm);
-        targaryens.add(viserysII);
-        targaryens.add(aemon136);
-        targaryens.add(naerys);
-        targaryens.add(aegonIV);
-        targaryens.add(daenerys);
-        targaryens.add(daeronII);
-        targaryens.add(rhaegel);
-        targaryens.add(aelora);
-        targaryens.add(aelor);
-        targaryens.add(daenora);
-        targaryens.add(aerysI);
-        targaryens.add(baelor170);
-        targaryens.add(valarr);
-        targaryens.add(matarys);
-        targaryens.add(maesterAemon);
-        targaryens.add(maekar);
-        targaryens.add(daeronDrunk);
-        targaryens.add(aerion);
-        targaryens.add(maegor232);
-        targaryens.add(daella);
-        targaryens.add(rhae);
-        targaryens.add(aegonV);
-        targaryens.add(rhaelle);
-        targaryens.add(steffonBaratheon);
-        targaryens.add(renlyBaratheon);
-        targaryens.add(stannisBaratheon);
-        targaryens.add(shireenBaratheon);
-        targaryens.add(robertBaratheon);
-        targaryens.add(tommenBaratheon);
-        targaryens.add(myrcellaBaratheon);
-        targaryens.add(joffreyBaratheon);
-
-        targaryens.add(daeron228);
-        targaryens.add(shaera);
-        targaryens.add(jaehaerysII);
-        targaryens.add(rhaella);
-        targaryens.add(aerysII);
-        targaryens.add(rhaegar);
-        targaryens.add(rhaenysgot);
-        targaryens.add(aegonGriff);
-        targaryens.add(viserysgot);
-        targaryens.add(dany);
-        targaryens.add(rhaego);
+        List<Royal> targaryens = Arrays.asList(daddyAerion, visenya, rhaenys, aegonTheConqueror,
+                maegorI, aenysI, rhaena23, aegon26, aerea, rhaella43, viserys29, alysanne, jaehaerysI,
+                daella55, aemma, vaegon, maegella, saera, alyssa, aemon, rhaenys74, laenor, laena, rhaena,
+                baela, baelon, daemon, viserysI, helaena, aemond, daeron114, aegonII, jaehaerys123,
+                jaehaera, maelor, rhaenyra, jacaerys, lucerys, joffreyVelaryon, aegonIII, daeronI,
+                baelorI, daena, rhaena147, elaena, robinPenrose, laenaPenrose, jocelynPenrose, joyPenrose,
+                viserysPlumm, benPlumm, philipPlumm, viserysII, aemon136, naerys, aegonIV, daenerys,
+                daeronII, rhaegel, aelora, aelor, daenora, aerysI, baelor170, valarr, matarys, maesterAemon,
+                maekar, daeronDrunk, aerion, maegor232, daella, rhae, aegonV, rhaelle, steffonBaratheon,
+                renlyBaratheon, stannisBaratheon, shireenBaratheon, robertBaratheon, tommenBaratheon,
+                myrcellaBaratheon, joffreyBaratheon, daeron228, shaera, jaehaerysII, rhaella, aerysII,
+                rhaegar, rhaenysGoT, aegonGriff, viserysGoT, dany, rhaego);
 
         for (Royal r : targaryens) {
-
             r.sortChildrenMaleFirstDob();
             if (Main.fullLineage){
                 r.setAlive(true);
@@ -631,7 +443,7 @@ public class TargaryenService {
         shireenBaratheon.setAlive(true);
         renlyBaratheon.setAlive(true);
 
-        viserysgot.setAlive(true);
+        viserysGoT.setAlive(true);
         aegonGriff.setAlive(true);
         benPlumm.setAlive(true);
 

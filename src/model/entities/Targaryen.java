@@ -1,8 +1,9 @@
 package model.entities;
+
 import model.enums.GenderEnum;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.List;
 
 public class Targaryen extends Royal {
 
@@ -17,7 +18,7 @@ public class Targaryen extends Royal {
 	}
 
 	public Targaryen(String name, LocalDate dob, GenderEnum gender,
-					 ArrayList<Royal> children) {
+					 List<Royal> children) {
 
 		super(name, dob, gender, null, children);
 		this.sortChildrenMaleFirstDob();
